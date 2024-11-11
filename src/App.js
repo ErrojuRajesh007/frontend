@@ -7,7 +7,7 @@ function App() {
       <Register />
 
       <main>
-        <h1> Hello </h1>
+        <h1>  </h1>
       </main>
     </div>
   );

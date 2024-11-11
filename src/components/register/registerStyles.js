@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   max-width: 400px;
   margin: 0 auto;
+  
   padding: 20px;
   background-color: #fff;
   border-radius: 8px;
@@ -33,6 +34,7 @@ export const Label = styled.label`
 export const Input = styled.input`
   width: 100%;
   padding: 10px;
+  
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 16px;

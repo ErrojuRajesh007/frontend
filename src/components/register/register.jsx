@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import {
   Container,
-  Title,
+  Title,  
   Form,
   FormGroup,
   Label,
@@ -15,10 +15,22 @@ import {
 
 const schema = yup.object().shape({
   name: yup.string().required('Name is required'),
-  email: yup.string().email('Invalid email').required('Email is required'),
-  phone: yup.string().matches(/^[0-9]{10}$/, 'Invalid phone number').required('Phone number is required'),
-  password: yup.string().min(8, 'Password must be at least 8 characters').required('Password is required'),
-  confirmPassword: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match'),
+  email: yup
+    .string()
+    .email('Please enter a valid email address with "@" symbol')
+    .required('Email is required'),
+  phone: yup
+    .string()
+    .matches(/^[0-9]{10}$/, 'Phone number must be exactly 10 digits and contain no letters or special characters')
+    .required('Phone number is required'),
+  password: yup
+    .string()
+    .min(8, 'Password must be at least 8 characters')
+    .required('Password is required'),
+  confirmPassword: yup
+    .string()
+    .oneOf([yup.ref('password'), null], 'Passwords must match')
+    .required('Confirm password is required'),
 });
 
 export default function Register() {
@@ -62,6 +74,8 @@ export default function Register() {
             id="phone" 
             {...register('phone')} 
             aria-invalid={errors.phone ? "true" : "false"}
+            pattern="^[0-9]{10}$" // Ensures only numbers and 10 digits
+            maxLength={10} // Restrict to 10 digits
           />
           {errors.phone && <ErrorMessage role="alert">{errors.phone.message}</ErrorMessage>}
         </FormGroup>
